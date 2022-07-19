@@ -2,7 +2,7 @@ overrides:
   - files:
       - "*.java"
     options:
-      printWidth: 80
+      printWidth: 81
       tabWidth: 4
       useTabs: true
       trailingComma: none
