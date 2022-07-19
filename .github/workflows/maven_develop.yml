@@ -23,6 +23,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Compilacion
-      run: mvn compile
+      run: mvn clean install -Dmaven.test.skip
     - name: Ejecucion de pruebas
       run: mvn surefire:test
