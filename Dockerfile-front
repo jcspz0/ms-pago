@@ -1,0 +1,23 @@
+FROM nginx:1.22.0-alpine
+
+WORKDIR /app 
+
+COPY ./ms-pago-frontend2 ./ms-pago-frontend2
+
+ARG ARG_API_HOST=http://localhost
+ARG ARG_API_PORT=8081
+
+ENV API_HOST=${ARG_API_HOST}
+ENV API_PORT=${ARG_API_PORT}
+
+WORKDIR /app/ms-pago-frontend2
+
+RUN apk add --update nodejs npm 
+RUN npm install 
+RUN npm run build 
+RUN mv /app/ms-pago-frontend2/dist/ms-pago-frontend/* /usr/share/nginx/html
+RUN mv /app/ms-pago-frontend2/nginx.conf /etc/nginx/nginx.conf 
+
+CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
+
+

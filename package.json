@@ -1,0 +1,28 @@
+{
+  "name": "ms-pago",
+  "version": "1.0.0",
+  "description": "Proyecto de microservicio de pago",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcspz0/ms-pago.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcspz0/ms-pago/issues"
+  },
+  "homepage": "https://github.com/jcspz0/ms-pago#readme",
+  "devDependencies": {
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.3"
+  },
+  "lint-staged": {
+    "*.java": "prettier --write --ignore-unknown"
+  }
+}

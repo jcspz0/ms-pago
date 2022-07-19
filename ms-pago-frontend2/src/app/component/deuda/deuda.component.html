@@ -1,0 +1,113 @@
+<router-outlet></router-outlet>
+
+<h2>Seleccionar Deuda</h2>
+<div>
+    <button mat-raised-button mat-button-base mat-primary color="primary" id="habilitarcreardeuda" (click)="habilitarCrearDeuda()">Crear Deuda</button>
+</div>
+
+<div *ngIf="crearDeuda">
+    <h3>Formulario para creacion de deuda</h3>
+
+    <form [formGroup]="inputFormCrear" (ngSubmit)="onCrearDeuda()">
+
+        <div>
+            <mat-form-field appearance="fill">
+            <mat-label>Identificador de reserva</mat-label>
+                <input matInput  id="inputCrearReservaId" type="text" formControlName="inputCrearReservaId">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+            <mat-label>Total</mat-label>
+                <input matInput id="inputCrearTotal" type="text" formControlName="inputCrearTotal">
+            </mat-form-field>
+        </div>
+        <button mat-raised-button mat-button-base mat-primary color="primary" id="botoncreardeuda" class="button" type="submit">Crear</button>
+
+    </form>
+
+</div>
+
+
+<form [formGroup]="inputFormBuscar" (ngSubmit)="onBuscarDeuda()">
+
+    <div>
+        <label for="inputReservaId">
+            Identificador de reserva:
+        </label>
+        <input id="inputReservaId" type="text" formControlName="inputReservaId">
+    </div>
+
+
+    <button mat-raised-button mat-button-base mat-primary color="primary" id="botonbuscardeuda" class="button" type="submit">Buscar</button>
+
+</form>
+
+<h3 *ngIf="mostrarDeudaSeleccionada">Deuda seleccionada: {{deudaEncontrada.deudaId}} </h3>
+
+<div *ngIf="crearPago">
+    <h3>Formulario para realizar pago</h3>
+
+    <form [formGroup]="inputFormRealizarPago" (ngSubmit)="onPagar()">
+
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Monto a pagar</mat-label>
+                    <input matInput  id="inputMontoPagado" type="text" formControlName="inputMontoPagado">
+                </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Detalle del pago</mat-label>
+                    <input matInput  id="inputDetalle" type="text" formControlName="inputDetalle">
+                </mat-form-field>
+        </div>
+        <button mat-raised-button mat-button-base mat-primary color="primary" id="botonrealizarpago" class="button" type="submit">Pagar</button>
+
+    </form>
+
+</div>
+
+<table  border="2">
+    <thead>
+        <tr>
+            <th >deudaId</th>
+            <th >reservaId</th>
+            <th >estado</th>
+            <th >total</th>
+            <th >accion</th>
+        </tr>
+    </thead>
+    <tbody id="tbodyDeudas">
+        <tr *ngIf="deudaEncontrada.deudaId">
+            <td >{{deudaEncontrada.deudaId}}</td>
+            <td >{{deudaEncontrada.reservaId}}</td>
+            <td  id="columnaestado">{{deudaEncontrada.estado}}</td>
+            <td  >{{deudaEncontrada.total}}</td>
+            <td>
+                <button mat-raised-button mat-button-base mat-primary color="primary" id="tablabotonseleccionar" (click)="cargarPagos()">ver pagos</button>
+                <button mat-raised-button mat-button-base mat-primary color="primary" id="tablabotonrealizarpago" (click)="onRealizarPago()">Realizar Pago</button>
+            </td>
+        </tr>
+    </tbody>
+  
+</table>
+
+<table   border="2" *ngIf="mostrarPagos">
+    <thead>
+        <tr>
+            <th>pagoId</th>
+            <th>detalle</th>
+            <th>deudaId</th>
+            <th>montoPagado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pago of deudaEncontrada.listaPagos">
+            <td>{{pago.pagoId}}</td>
+            <td>{{pago.detalle}}</td>
+            <td>{{pago.deudaId}}</td>
+            <td>{{pago.montoPagado}}</td>
+        </tr>
+    </tbody>
+</table>
