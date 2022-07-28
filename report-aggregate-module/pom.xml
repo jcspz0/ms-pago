@@ -1,0 +1,211 @@
+<project>
+  <artifactId>my-project-report-aggregate</artifactId>
+  <name>Reporte jacoco ms-pago</name>
+  <description>Aggregate Coverage Report</description>
+  <modelVersion>4.0.0</modelVersion>
+	<groupId>com.diplo.report</groupId>
+	<version>0.0.1</version>
+
+    <properties>
+		<java.version>11</java.version>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+        <code.coverage.project.folder>${basedir}/../</code.coverage.project.folder>
+    <code.coverage.overall.data.folder>${basedir}/target/</code.coverage.overall.data.folder>
+		<sonar.organization>jcspz0</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.coverage.jacoco.xmlReportPaths>
+            ${project.basedir}/report-aggregate-module/target/site/jacoco-aggregate/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
+	</properties>
+
+
+
+  <dependencies>
+  <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<version>2.6.6</version>
+		</dependency>
+    <dependency>
+			<groupId>com.diplo.infraestructure</groupId>
+			<artifactId>ms-pago-infraestructure</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+    <dependency>
+			<groupId>com.diplo.application</groupId>
+			<artifactId>ms-pago-application</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+        <dependency>
+			<groupId>com.diplo</groupId>
+			<artifactId>ms-sharekernel</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+        <dependency>
+			<groupId>com.diplo</groupId>
+			<artifactId>ms-pago-domain</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+        <dependency>
+			<groupId>com.diplo.webapi</groupId>
+			<artifactId>ms-pago-webapi</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <!--plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>copy-class-files</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <overwrite>false</overwrite>
+              <resources>
+                <resource>
+                  <directory>../ms-pago-domain/target/classes</directory>
+                </resource>
+                <resource>
+                  <directory>../ms-pago-application/target/classes</directory>
+                </resource>
+                <resource>
+                  <directory>../ms-pago-infraestructure/target/classes</directory>
+                </resource>
+                <resource>
+                  <directory>../ms-pago-webapi/target/classes</directory>
+                </resource>
+              </resources>
+              <outputDirectory>${project.build.directory}/classes</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+  
+
+<plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>report-aggregate</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report-aggregate</goal>
+            </goals>
+          </execution>
+
+          <execution>
+            <id>merge-results</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>merge</goal>
+            </goals>
+            <configuration>
+              <fileSets>
+                <fileSet>
+                  <directory>${code.coverage.project.folder}</directory>
+                  <includes>
+                    <include>**/target/jacoco.exec</include>
+                  </includes>
+                </fileSet>
+              </fileSets>
+              <destFile>${code.coverage.overall.data.folder}/aggregate.exec</destFile>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>check</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <fileSet>
+                <directory>${code.coverage.project.folder}/target/classes</directory>
+              </fileSet>
+              <rules>
+                <rule>
+                  <element>BUNDLE</element>
+                  <limits>
+                    <limit>
+                      <counter>INSTRUCTION</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>10%</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+              </rules>
+              <dataFile>${code.coverage.overall.data.folder}/aggregate.exec</dataFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin-->
+
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.8</version>
+                <executions>
+                    <execution>
+                        <id>jacoco-report-aggregate</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report-aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        
+
+
+    </plugins>
+  </build>
+
+<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.6</version>
+				<reportSets>
+					<reportSet>
+						<reports><!-- select reports -->
+							<report>index</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<reportSets>
+					<reportSet><!-- by default, id = "default" -->
+						<reports><!-- select non-aggregate reports -->
+							<report>javadoc</report>
+							<report>test-javadoc</report>
+						</reports>
+					</reportSet>
+					<reportSet><!--aggregate reportSet, to define in poms having modules -->
+						<id>aggregate</id>
+						<inherited>false</inherited><!--don't run aggregate in child modules -->
+						<reports>
+							<report>aggregate</report>
+						</reports>
+					</reportSet> 
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
+
+
+</project>
