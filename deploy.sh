@@ -6,6 +6,8 @@ RAMA_REPO="develop"
 cd $PATH_REPO
 #Actualizar el codigo
 git checkout -b $RAMA_REPO
-git pull origin $RAMA_REPO 
+git fetch
+git reset --hard HEAD
+git merge origin/$RAMA_REPO
 #contruir las imagenes y levantar los contenedores
-docker-compose up --build
+docker-compose up --build -d
