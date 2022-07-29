@@ -7,6 +7,7 @@ COPY ./ms-pago-domain ./ms-pago-domain
 COPY ./ms-pago-application ./ms-pago-application
 COPY ./ms-pago-infraestructure ./ms-pago-infraestructure
 COPY ./ms-pago-webapi ./ms-pago-webapi
+COPY ./report-aggregate-module ./report-aggregate-module
 COPY ./pom.xml ./pom.xml
 
 RUN wget https://mirrors.estointernet.in/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz \
