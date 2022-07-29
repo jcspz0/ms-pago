@@ -57,4 +57,4 @@ jobs:
         
       - name: Start the server
         if: ${{ always() }}
-        run: ssh staging 'cd /diplo/ms-pago/ && docker-compose up'
+        run: ssh staging 'cd /diplo/ms-pago/ && docker-compose up -d'
