@@ -54,4 +54,8 @@ public class Pago extends Entity<UUID> {
 	public String ImprimirRecibo() {
 		return Recibo.Imprimir();
 	}
+
+	public String ImprimirRecibo2() {
+		return Recibo.Imprimir();
+	}
 }
