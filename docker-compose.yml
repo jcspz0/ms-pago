@@ -8,7 +8,7 @@ services:
     ports:
       - 4000:4000
     environment:
-      - API_HOST=http://localhost
+      - API_HOST=http://174.138.33.113
       - API_PORT=8081
     depends_on:
       - backend
