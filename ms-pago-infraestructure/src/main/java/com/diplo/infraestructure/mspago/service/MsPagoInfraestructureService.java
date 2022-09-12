@@ -4,8 +4,8 @@ import com.diplo.application.mspago.service.IMediatorApplicationService;
 import com.diplo.application.mspago.service.MsPagoApplicationService;
 import com.diplo.mspago.repository.IDeudaRepository;
 import com.diplo.mspago.repository.IUnitOfWork;
-import com.diplo.sharekernel.core.IApplicationService;
-import com.diplo.sharekernel.core.IInfraestructureService;
+import com.diplo.sharedkernel.core.IApplicationService;
+import com.diplo.sharedkernel.event.IInfraestructureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

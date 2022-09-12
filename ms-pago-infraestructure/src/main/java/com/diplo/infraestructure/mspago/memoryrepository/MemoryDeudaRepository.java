@@ -76,4 +76,10 @@ public class MemoryDeudaRepository implements IDeudaRepository {
 		}
 		return CompletableFuture.completedFuture(result);
 	}
+
+	@Override
+	public void commit() {
+		// TODO Auto-generated method stub
+		return;
+	}
 }

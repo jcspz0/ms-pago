@@ -110,9 +110,7 @@ public class pagar_deuda {
 		);
 		botonbuscardeuda.click();
 		Thread.sleep(5000);
-		List<WebElement> tbodyDeudas = driver.findElements(
-			By.id("tbodyDeudas")
-		);
+		List<WebElement> tbodyDeudas = driver.findElements(By.id("tbodyDeudas"));
 		List<WebElement> filas = tbodyDeudas
 			.get(0)
 			.findElements(By.tagName("tr"));
@@ -178,9 +176,7 @@ public class pagar_deuda {
 		);
 		botonbuscardeuda.click();
 		Thread.sleep(5000);
-		List<WebElement> tbodyDeudas = driver.findElements(
-			By.id("tbodyDeudas")
-		);
+		List<WebElement> tbodyDeudas = driver.findElements(By.id("tbodyDeudas"));
 		List<WebElement> filas = tbodyDeudas
 			.get(0)
 			.findElements(By.tagName("tr"));
@@ -216,9 +212,7 @@ public class pagar_deuda {
 			WebElement botonSeleccionar;
 			for (WebElement fila : filas) {
 				if (
-					!fila
-						.findElements(By.id("tablabotonrealizarpago"))
-						.isEmpty()
+					!fila.findElements(By.id("tablabotonrealizarpago")).isEmpty()
 				) {
 					botonSeleccionar =
 						fila.findElement(By.id("tablabotonrealizarpago"));

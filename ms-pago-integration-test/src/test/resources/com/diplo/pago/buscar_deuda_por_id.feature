@@ -11,4 +11,4 @@ Feature: Buscar deuda por id
 
     Examples: 
       | deuda_id                             | estado | codigo_resp |
-      | 8cfe59d6-7bdc-40fb-ac9a-91ac2b267e5e | PAGADA |         200 |
+      | 1e3cbe2a-7eb1-47f2-b57a-0f6df689c741 | PAGADA |         200 |

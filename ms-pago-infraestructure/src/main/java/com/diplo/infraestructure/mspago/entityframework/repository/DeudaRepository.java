@@ -51,4 +51,10 @@ public class DeudaRepository implements IDeudaRepository {
 
 		return CompletableFuture.completedFuture(deuda);
 	}
+
+	@Override
+	public void commit() {
+		// TODO Auto-generated method stub
+		return;
+	}
 }

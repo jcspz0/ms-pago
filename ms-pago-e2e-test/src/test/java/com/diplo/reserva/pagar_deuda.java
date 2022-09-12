@@ -93,7 +93,9 @@ public class pagar_deuda {
 				deudaId = resultado.getDeudaId();
 				System.out.println("Se encontró la deuda " + deudaId);
 			});
-			resultadoRestBuscarDeuda.block();
+			Thread.sleep(5000);
+			//resultadoRestBuscarDeuda.block();
+
 		} catch (Exception e) {}
 	}
 
@@ -113,7 +115,7 @@ public class pagar_deuda {
 					response -> {
 						estatusCode = response.statusCode().value();
 						System.out.println(
-							"codigo de respuiesta " + estatusCode
+							"codigo de respuiesta al crear deuda " + estatusCode
 						);
 						return Mono.error(
 							new HttpClientErrorException(response.statusCode())
@@ -125,7 +127,7 @@ public class pagar_deuda {
 					response -> {
 						estatusCode = response.statusCode().value();
 						System.out.println(
-							"codigo de respuiesta " + estatusCode
+							"codigo de respuiesta al crear deuda  " + estatusCode
 						);
 						return Mono.error(
 							new HttpServerErrorException(response.statusCode())
@@ -139,7 +141,8 @@ public class pagar_deuda {
 				deudaId = resultado.getDeudaId();
 				System.out.println("Se creó la deuda " + deudaId);
 			});
-			resultadoRestCrearDeuda.block();
+			Thread.sleep(5000);
+			//resultadoRestCrearDeuda.block();
 		} catch (Exception e) {
 			System.out.println("Entro en excepcion " + estatusCode);
 		}
@@ -162,7 +165,7 @@ public class pagar_deuda {
 					response -> {
 						estatusCode = response.statusCode().value();
 						System.out.println(
-							"codigo de respuiesta " + estatusCode
+							"codigo de respuiesta al realzar pago " + estatusCode
 						);
 						return Mono.error(
 							new HttpClientErrorException(response.statusCode())
@@ -174,7 +177,8 @@ public class pagar_deuda {
 					response -> {
 						estatusCode = response.statusCode().value();
 						System.out.println(
-							"codigo de respuiesta " + estatusCode
+							"codigo de respuiesta al realzar pago  " +
+							estatusCode
 						);
 						return Mono.error(
 							new HttpServerErrorException(response.statusCode())
@@ -187,7 +191,8 @@ public class pagar_deuda {
 			resultadoRestPago.subscribe(resultado -> {
 				System.out.println("Se creó el pago " + resultado.getPagoId());
 			});
-			resultadoRestPago.block();
+			Thread.sleep(5000);
+			//resultadoRestPago.block();
 		} catch (Exception e) {
 			System.out.println("Entro en excepcion " + estatusCode);
 		}

@@ -1,7 +1,7 @@
 package com.diplo.application.mspago.usecase.command.deuda.creardeuda;
 
 import com.diplo.application.mspago.dto.pago.PagoDTO;
-import com.diplo.application.mspago.mediator.request.IRequest;
+import com.diplo.sharedkernel.mediator.request.IRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

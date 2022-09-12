@@ -82,7 +82,7 @@ class DbDeudaRepositoryTest {
 	@Test
 	void CreateAsync() throws InterruptedException, ExecutionException {
 		Future<Deuda> resultado = dbDeudaRepositoryTest.CreateAsync(deudaTest);
-
+		dbDeudaRepositoryTest.commit();
 		assertNotNull(resultado);
 		assertEquals(deudaIdTest, resultado.get().getId());
 	}
@@ -90,14 +90,13 @@ class DbDeudaRepositoryTest {
 	@Test
 	void UpdateAsync() throws InterruptedException, ExecutionException {
 		Future<Deuda> resultado = dbDeudaRepositoryTest.UpdateAsync(deudaTest);
-
+		dbDeudaRepositoryTest.commit();
 		assertNotNull(resultado);
 		assertEquals(deudaIdTest, resultado.get().getId());
 	}
 
 	@Test
-	void FindByReservaIdAsync()
-		throws InterruptedException, ExecutionException {
+	void FindByReservaIdAsync() throws InterruptedException, ExecutionException {
 		when(deudaEntityRepositoryTest.findDeudaByReservaId(anyString()))
 			.thenReturn(deudaEntityTest);
 

@@ -1,7 +1,5 @@
 package com.diplo.application.mspago.service;
 
-import com.diplo.application.mspago.mediator.IMediator;
-import com.diplo.application.mspago.mediator.Mediator;
 import com.diplo.application.mspago.service.deuda.DeudaService;
 import com.diplo.application.mspago.service.deuda.IDeudaService;
 import com.diplo.application.mspago.service.pago.IPagoService;
@@ -10,6 +8,8 @@ import com.diplo.mspago.factory.deuda.DeudaFactory;
 import com.diplo.mspago.factory.deuda.IDeudaFactory;
 import com.diplo.mspago.factory.pago.IPagoFactory;
 import com.diplo.mspago.factory.pago.PagoFactory;
+import com.diplo.sharedkernel.mediator.IMediator;
+import com.diplo.sharedkernel.mediator.Mediator;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -12,11 +12,6 @@
 		<java.version>11</java.version>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
-		<sonar.organization>jcspz0</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.coverage.jacoco.xmlReportPaths>
-			../ms-pago-webapi/target/site/jacoco/jacoco.xml
-		</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -48,8 +43,6 @@
 
 
 	</dependencies>
-
-	
 
 	<build>
 		<plugins>
@@ -94,6 +87,7 @@
 					<execution>
 						<id>report</id>
 						<phase>test</phase>
+						<!-- phase>prepare-package</phase> -->
 						<goals>
 							<goal>report</goal>
 						</goals>
@@ -132,7 +126,7 @@
 				<version>2.6</version>
 				<reportSets>
 					<reportSet>
-						<reports>
+						<reports><!-- select reports -->
 							<report>index</report>
 						</reports>
 					</reportSet>
@@ -143,19 +137,19 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.9</version>
 				<reportSets>
-					<reportSet>
-						<reports>
+					<reportSet><!-- by default, id = "default" -->
+						<reports><!-- select non-aggregate reports -->
 							<report>javadoc</report>
 							<report>test-javadoc</report>
 						</reports>
 					</reportSet>
-					<reportSet>
+					<reportSet><!-- aggregate reportSet, to define in poms having modules -->
 						<id>aggregate</id>
-						<inherited>false</inherited>
+						<inherited>false</inherited><!-- don't run aggregate in child modules -->
 						<reports>
 							<report>aggregate</report>
 						</reports>
-					</reportSet> 
+					</reportSet>
 				</reportSets>
 			</plugin>
 		</plugins>

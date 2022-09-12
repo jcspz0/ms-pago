@@ -2,12 +2,13 @@ package com.diplo.mspago.event;
 
 import com.diplo.mspago.model.deuda.Pago;
 import com.diplo.mspago.valueobjects.Monto;
-import com.diplo.sharekernel.core.DomainEvent;
+import com.diplo.sharedkernel.event.DomainEvent;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 public final class DeudaCreada extends DomainEvent {
 
+	private static final long serialVersionUID = 1L;
 	private final UUID DeudaId;
 	private final String Estado;
 	private final UUID ReservaId;
@@ -19,10 +20,26 @@ public final class DeudaCreada extends DomainEvent {
 		Monto total,
 		String estado
 	) {
-		super(LocalDateTime.now());
+		super("DeudaCreada", LocalDateTime.now());
 		DeudaId = deudaId;
 		ReservaId = reservaId;
 		Total = total;
 		Estado = estado;
+	}
+
+	public UUID getDeudaId() {
+		return DeudaId;
+	}
+
+	public String getEstado() {
+		return Estado;
+	}
+
+	public UUID getReservaId() {
+		return ReservaId;
+	}
+
+	public Monto getTotal() {
+		return Total;
 	}
 }

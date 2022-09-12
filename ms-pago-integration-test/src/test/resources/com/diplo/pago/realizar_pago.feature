@@ -10,4 +10,4 @@ Feature: Realizar pago
 
     Examples: 
       | deuda_id                             | monto | detalle        | codigo_resp |
-      | 3fc9594e-1706-4f57-a83a-8ce8a0fdc230 |     1 | pago de prueba |         200 |
+      | 00546c9d-1ae7-45c0-9498-65b5c6a3d269 |     1 | pago de prueba |         200 |

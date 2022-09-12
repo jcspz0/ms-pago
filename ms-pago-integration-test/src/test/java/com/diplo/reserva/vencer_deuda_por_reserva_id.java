@@ -60,17 +60,19 @@ public class vencer_deuda_por_reserva_id {
 				.bodyToMono(new ParameterizedTypeReference<DeudaDTO>() {});
 
 		try {
-			resultadoDeudaRest.subscribe(resultado -> {});
+			/*resultadoDeudaRest.subscribe(resultado -> {
+					}
+
+					);*/
+			//Thread.sleep(5000);
 			resultado = resultadoDeudaRest.block();
 		} catch (Exception e) {}
 
+		System.out.println("Deuda encontrada " + resultado.getDeudaId());
 		resultadoDeudaVencidaRest =
 			client
 				.get()
-				.uri(
-					"/deuda/vencerdeuda?id={reservaId}",
-					resultado.getDeudaId()
-				)
+				.uri("/deuda/vencerdeuda?id={reservaId}", resultado.getDeudaId())
 				.retrieve()
 				.onStatus(
 					httpStatus -> httpStatus.is4xxClientError(),
@@ -91,7 +93,10 @@ public class vencer_deuda_por_reserva_id {
 				.bodyToMono(new ParameterizedTypeReference<DeudaDTO>() {});
 
 		try {
-			resultadoDeudaVencidaRest.subscribe(resultado -> {});
+			/*resultadoDeudaVencidaRest.subscribe(resultado -> {
+										}
+									);
+							Thread.sleep(10000);*/
 			resultado = resultadoDeudaVencidaRest.block();
 		} catch (Exception e) {}
 	}

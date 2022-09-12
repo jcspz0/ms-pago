@@ -1,6 +1,6 @@
 package com.diplo.mspago.valueobjects;
 
-import com.diplo.sharekernel.core.ValueObject;
+import com.diplo.sharedkernel.core.ValueObject;
 
 public final class DetallePago extends ValueObject {
 

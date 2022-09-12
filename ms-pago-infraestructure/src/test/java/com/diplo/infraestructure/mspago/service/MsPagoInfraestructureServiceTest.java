@@ -32,6 +32,7 @@ class MsPagoInfraestructureServiceTest {
 				_deudaRepository,
 				_unitOfWork
 			);
+		msPagoInfraestructureService.AddInfraestructure(service);
 		msPagoInfraestructureService.set_unitOfWork(_unitOfWork);
 		msPagoInfraestructureService.setDeudaRepository(_deudaRepository);
 		msPagoInfraestructureService.setService(service);
@@ -41,9 +42,6 @@ class MsPagoInfraestructureServiceTest {
 			_deudaRepository,
 			msPagoInfraestructureService.getDeudaRepository()
 		);
-		assertEquals(
-			_unitOfWork,
-			msPagoInfraestructureService.get_unitOfWork()
-		);
+		assertEquals(_unitOfWork, msPagoInfraestructureService.get_unitOfWork());
 	}
 }

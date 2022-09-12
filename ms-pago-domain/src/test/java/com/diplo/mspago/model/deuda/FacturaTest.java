@@ -16,7 +16,7 @@ class FacturaTest {
 		Nit nitTest = new Nit(545454);
 
 		Factura facturaTest = new Factura(detalleTest, totalTest, nitTest);
-
+		String codigoFactura = facturaTest.getCodigoFactura().getCodigo();
 		String resultado = facturaTest.Imprimir();
 
 		String esperado =
@@ -31,6 +31,7 @@ class FacturaTest {
 		assertEquals(totalTest, facturaTest.getTotal());
 		assertEquals(nitTest, facturaTest.getNit());
 		assertNotNull(facturaTest.getCodigoFactura());
+		assertNotNull(codigoFactura);
 		assertEquals(esperado, resultado);
 	}
 }

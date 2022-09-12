@@ -7,13 +7,13 @@ import static org.mockito.Mockito.when;
 import com.diplo.application.mspago.dto.pago.DeudaDTO;
 import com.diplo.application.mspago.dto.pago.FacturaDTO;
 import com.diplo.application.mspago.dto.pago.PagoDTO;
-import com.diplo.application.mspago.mediator.IMediator;
 import com.diplo.application.mspago.usecase.command.deuda.creardeuda.CrearDeudaCommand;
-import com.diplo.application.mspago.usecase.command.deuda.vencerreserva.VencerReservaCommand;
+import com.diplo.application.mspago.usecase.command.deuda.vencerdeuda.VencerDeudaCommand;
 import com.diplo.application.mspago.usecase.command.pago.realizarpago.RealizarPagoReturnInfoCommand;
 import com.diplo.application.mspago.usecase.query.deuda.getDeudaById.GetDeudaByIdQuery;
 import com.diplo.application.mspago.usecase.query.deuda.getDeudaByReservaId.GetDeudaByReservaIdQuery;
 import com.diplo.application.mspago.usecase.query.deuda.getFacturaById.GetFacturaByIdDeudaQuery;
+import com.diplo.sharedkernel.mediator.IMediator;
 import com.diplo.webapi.mspago.service.MsPagoWebApiService;
 import java.util.ArrayList;
 import java.util.List;
@@ -142,11 +142,7 @@ class DeudaControllerTest {
 	@Test
 	void VencerDeudaById() throws Exception {
 		deudaDTOTest.setEstado("VENCIDA");
-		when(
-			webApiServiceTest
-				.getMediator()
-				.Send(any(VencerReservaCommand.class))
-		)
+		when(webApiServiceTest.getMediator().Send(any(VencerDeudaCommand.class)))
 			.thenReturn(UUID.fromString(deudaIdTest));
 		when(webApiServiceTest.getMediator().Send(any(GetDeudaByIdQuery.class)))
 			.thenReturn(deudaDTOTest);
