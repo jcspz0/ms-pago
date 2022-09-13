@@ -1,6 +1,7 @@
 package com.diplo.infraestructure.mspago.entityframework.dbrepository.entity;
 
 import com.diplo.mspago.model.deuda.Pago;
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "pago")
@@ -21,6 +24,7 @@ public class PagoEntity {
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "deuda_id", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private DeudaEntity deuda;
 
 	public PagoEntity() {

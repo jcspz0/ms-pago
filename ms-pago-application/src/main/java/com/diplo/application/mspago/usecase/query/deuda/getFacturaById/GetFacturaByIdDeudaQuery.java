@@ -2,7 +2,7 @@ package com.diplo.application.mspago.usecase.query.deuda.getFacturaById;
 
 import com.diplo.application.mspago.dto.pago.DeudaDTO;
 import com.diplo.application.mspago.dto.pago.FacturaDTO;
-import com.diplo.application.mspago.mediator.request.IRequest;
+import com.diplo.sharedkernel.mediator.request.IRequest;
 import java.util.UUID;
 
 public class GetFacturaByIdDeudaQuery implements IRequest<FacturaDTO> {

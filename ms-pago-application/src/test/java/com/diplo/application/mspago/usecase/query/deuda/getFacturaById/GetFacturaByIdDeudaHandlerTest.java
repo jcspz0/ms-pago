@@ -43,8 +43,7 @@ class GetFacturaByIdDeudaHandlerTest {
 		totalDeudaTest = new Monto(100);
 		deudaTest = new Deuda(deudaIDTest, reservaIdTest, totalDeudaTest);
 
-		when(getFacturaByIdDeudaQueryTest.getId())
-			.thenReturn(deudaTest.getId());
+		when(getFacturaByIdDeudaQueryTest.getId()).thenReturn(deudaTest.getId());
 		when(_deudaRepositoryTest.FindByIdAsync(any()))
 			.thenReturn(CompletableFuture.completedFuture(deudaTest));
 	}

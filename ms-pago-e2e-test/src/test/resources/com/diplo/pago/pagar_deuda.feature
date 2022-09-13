@@ -11,4 +11,4 @@ Feature: Realizar pago de una reserva
 
     Examples: 
       | reserva_id                           | total | monto | detalle          | nit     | codigo_resp |
-      | 04a3f9d7-68ab-404f-b3e3-850e88f5c711 |   1000 | 1 |detalle del pago | 4731768 |         200 |
+      | 10c4a938-8fcd-45c8-87e2-5c3111e96699 |   100 | 1 |detalle del pago | 4731768 |         200 |

@@ -82,9 +82,7 @@ class CrearDeudaHandlerTest {
 
 	@Test
 	void CrearDeuda() throws Exception {
-		Future<UUID> resultado = crearDeudaHandler.Handle(
-			crearDeudaCommandTest
-		);
+		Future<UUID> resultado = crearDeudaHandler.Handle(crearDeudaCommandTest);
 
 		assertNotNull(resultado);
 		assertEquals(deudaIdTest, resultado.get());

@@ -11,4 +11,4 @@ Feature: obtener una factura de una reserva pagada en su totalidad
 
     Examples: 
       | reserva_id                           | detalle          | nit     | codigo_resp |
-      | 04a3f9d7-68ab-404f-b3e3-850e88f5c7ec | detalle del pago | 4731768 |         200 |
+      | f55eb2a1-8b4d-45de-9bc8-c052c44e881a | detalle del pago | 4731768 |         200 |

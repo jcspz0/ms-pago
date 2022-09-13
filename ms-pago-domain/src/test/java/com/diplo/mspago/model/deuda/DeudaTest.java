@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.doubleThat;
 
 import com.diplo.mspago.valueobjects.DetallePago;
 import com.diplo.mspago.valueobjects.Monto;
+import com.diplo.sharedkernel.core.Constant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -64,7 +65,7 @@ class DeudaTest {
 		boolean resultado = deudaTest.RealizarPago(pagoTest);
 
 		assertTrue(resultado);
-		assertEquals("PAGADA", deudaTest.getEstado());
+		assertEquals(Constant.DEUDAESTADOPROCESANDO, deudaTest.getEstado());
 	}
 
 	@Test
@@ -179,7 +180,7 @@ class DeudaTest {
 			);
 
 		boolean pagoRealizado = deudaTest.RealizarPago(pagoTest);
-
+		deudaTest.confirmarPago();
 		Factura facturaGenerada = deudaTest.GenerarFactura(
 			detalleFacturaTest,
 			nitTest
@@ -258,5 +259,42 @@ class DeudaTest {
 		assertTrue(pagoRealizado);
 		assertFalse(deudaVencida);
 		assertNotEquals("VENCIDA", deudaTest.getEstado());
+	}
+
+	@Test
+	void AnularPago() {
+		ReservaIdTest = UUID.randomUUID();
+		TotalTest = new Monto(100);
+		ListaPagosTest = new ArrayList<>();
+		deudaIdTest = UUID.randomUUID();
+		deudaTest =
+			new Deuda(
+				deudaIdTest,
+				ReservaIdTest,
+				TotalTest,
+				Constant.DEUDAESTADOINICIADA,
+				ListaPagosTest
+			);
+		pagoIdTest = UUID.randomUUID();
+		montoPagadoTest = new Monto(100);
+		detalleTest = new DetallePago("Detalle del pago");
+		pagoTest =
+			new Pago(
+				pagoIdTest,
+				montoPagadoTest,
+				detalleTest,
+				deudaTest.getId()
+			);
+
+		double deudainicial = this.deudaTest.consultarDeuda();
+		this.deudaTest.RealizarPago(pagoTest);
+		double deudaconpago = this.deudaTest.consultarDeuda();
+		this.deudaTest.anularPago(pagoIdTest.toString());
+		double deudafinal = this.deudaTest.consultarDeuda();
+		System.out.println("test ->" + deudainicial);
+		System.out.println("test ->" + deudaconpago);
+		System.out.println("test ->" + deudafinal);
+		assertNotEquals(deudafinal, deudaconpago);
+		assertEquals(deudainicial, deudafinal);
 	}
 }

@@ -4,7 +4,7 @@ import com.diplo.mspago.valueobjects.CodigoFactura;
 import com.diplo.mspago.valueobjects.DetallePago;
 import com.diplo.mspago.valueobjects.Monto;
 import com.diplo.mspago.valueobjects.Nit;
-import com.diplo.sharekernel.core.Entity;
+import com.diplo.sharedkernel.core.Entity;
 import java.util.UUID;
 
 public class Factura extends Entity<UUID> {

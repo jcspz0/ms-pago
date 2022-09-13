@@ -4,7 +4,7 @@ import com.diplo.application.mspago.dto.pago.DeudaDTO;
 import com.diplo.application.mspago.dto.pago.FacturaDTO;
 import com.diplo.application.mspago.dto.pago.PagoDTO;
 import com.diplo.application.mspago.usecase.command.deuda.creardeuda.CrearDeudaCommand;
-import com.diplo.application.mspago.usecase.command.deuda.vencerreserva.VencerReservaCommand;
+import com.diplo.application.mspago.usecase.command.deuda.vencerdeuda.VencerDeudaCommand;
 import com.diplo.application.mspago.usecase.command.pago.realizarpago.RealizarPagoCommand;
 import com.diplo.application.mspago.usecase.command.pago.realizarpago.RealizarPagoReturnInfoCommand;
 import com.diplo.application.mspago.usecase.query.deuda.getDeudaById.GetDeudaByIdQuery;
@@ -144,7 +144,7 @@ public class DeudaController {
 		try {
 			deudaID =
 				this._deudaService.getMediator()
-					.Send(new VencerReservaCommand(id));
+					.Send(new VencerDeudaCommand(id));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

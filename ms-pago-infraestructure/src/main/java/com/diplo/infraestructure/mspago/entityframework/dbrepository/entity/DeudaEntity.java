@@ -25,6 +25,7 @@ public class DeudaEntity {
 	private double Total;
 	private String Estado;
 
+	//@OneToMany(mappedBy="deuda", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@OneToMany(
 		mappedBy = "deuda",
 		fetch = FetchType.EAGER,
@@ -57,7 +58,12 @@ public class DeudaEntity {
 		this.Estado = deuda.getEstado();
 		this.Total = deuda.getTotal().getMonto();
 		this.ListaPagos = new ArrayList<PagoEntity>();
+		System.out.println("Creando el deudaEntity");
+		System.out.println("el tamano es " + deuda.getListaPagos().size());
 		for (Pago pagoEntity : deuda.getListaPagos()) {
+			System.out.println(
+				"recorriendo el deuda entity con elemento " + pagoEntity.getId()
+			);
 			this.ListaPagos.add(new PagoEntity(pagoEntity, this));
 		}
 	}

@@ -1,11 +1,10 @@
 package com.diplo.webapi.mspago.service;
 
-import com.diplo.application.mspago.mediator.IMediator;
 import com.diplo.application.mspago.service.MsPagoApplicationService;
 import com.diplo.application.mspago.usecase.command.deuda.creardeuda.CrearDeudaCommand;
 import com.diplo.application.mspago.usecase.command.deuda.creardeuda.CrearDeudaHandler;
-import com.diplo.application.mspago.usecase.command.deuda.vencerreserva.VencerReservaCommand;
-import com.diplo.application.mspago.usecase.command.deuda.vencerreserva.VencerReservaHandler;
+import com.diplo.application.mspago.usecase.command.deuda.vencerdeuda.VencerDeudaCommand;
+import com.diplo.application.mspago.usecase.command.deuda.vencerdeuda.VencerDeudaHandler;
 import com.diplo.application.mspago.usecase.command.pago.realizarpago.RealizarPagoCommand;
 import com.diplo.application.mspago.usecase.command.pago.realizarpago.RealizarPagoHandler;
 import com.diplo.application.mspago.usecase.command.pago.realizarpago.RealizarPagoReturnInfoCommand;
@@ -17,6 +16,7 @@ import com.diplo.application.mspago.usecase.query.deuda.getDeudaByReservaId.GetD
 import com.diplo.application.mspago.usecase.query.deuda.getFacturaById.GetFacturaByIdDeudaHandler;
 import com.diplo.application.mspago.usecase.query.deuda.getFacturaById.GetFacturaByIdDeudaQuery;
 import com.diplo.infraestructure.mspago.service.MsPagoInfraestructureService;
+import com.diplo.sharedkernel.mediator.IMediator;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -95,15 +95,12 @@ public class MsPagoWebApiService {
 		);
 
 		//Registro de vencer Deuda/reserva
-		VencerReservaCommand _vencerReservaCommand = new VencerReservaCommand();
-		VencerReservaHandler _vencerReservaHandler = new VencerReservaHandler(
+		VencerDeudaCommand _vencerReservaCommand = new VencerDeudaCommand();
+		VencerDeudaHandler _vencerReservaHandler = new VencerDeudaHandler(
 			_serviceInfra.getDeudaRepository(),
 			_serviceInfra.get_unitOfWork()
 		);
-		_mediator.registrarComando(
-			_vencerReservaCommand,
-			_vencerReservaHandler
-		);
+		_mediator.registrarComando(_vencerReservaCommand, _vencerReservaHandler);
 
 		//Registro de generarFactura
 		GetFacturaByIdDeudaQuery _getFacturaByIdDeudaQuery = new GetFacturaByIdDeudaQuery();
