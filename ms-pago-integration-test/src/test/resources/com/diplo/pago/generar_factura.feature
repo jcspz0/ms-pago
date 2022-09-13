@@ -11,4 +11,4 @@ Feature: Generar factura de una deuda PAGADA
 
     Examples: 
       | deuda_id                             | detalle            | nit   | codigo_resp |
-      | d629e6f4-4bb6-47e9-9f0e-3341b92f6cf5 | detalle de factura | 48451 |         200 |
+      | 1e3cbe2a-7eb1-47f2-b57a-0f6df689c741 | detalle de factura | 48451 |         200 |

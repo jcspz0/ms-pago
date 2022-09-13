@@ -1,7 +1,7 @@
 package com.diplo.mspago.model.reserva;
 
 import com.diplo.mspago.valueobjects.Monto;
-import com.diplo.sharekernel.core.AggregateRoot;
+import com.diplo.sharedkernel.core.AggregateRoot;
 import java.util.UUID;
 
 public class Reserva extends AggregateRoot<UUID> {

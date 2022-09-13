@@ -70,7 +70,8 @@ public class generar_factura {
 			resultadoRest.subscribe(resultado -> {
 				codigo_factura = resultado.getCodigoFactura();
 			});
-			resultadoRest.block();
+			Thread.sleep(5000);
+			//resultadoRest.block();
 		} catch (Exception e) {}
 	}
 

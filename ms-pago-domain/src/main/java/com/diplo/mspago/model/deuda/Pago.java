@@ -2,7 +2,7 @@ package com.diplo.mspago.model.deuda;
 
 import com.diplo.mspago.valueobjects.DetallePago;
 import com.diplo.mspago.valueobjects.Monto;
-import com.diplo.sharekernel.core.Entity;
+import com.diplo.sharedkernel.core.Entity;
 import java.util.UUID;
 
 public class Pago extends Entity<UUID> {

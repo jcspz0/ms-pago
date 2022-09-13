@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import com.diplo.application.mspago.usecase.command.deuda.vencerdeuda.VencerDeudaCommand;
+import com.diplo.application.mspago.usecase.command.deuda.vencerdeuda.VencerDeudaHandler;
 import com.diplo.mspago.model.deuda.Deuda;
 import com.diplo.mspago.repository.IDeudaRepository;
 import com.diplo.mspago.repository.IUnitOfWork;
@@ -20,10 +22,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class VencerReservaHandlerTest {
 
-	VencerReservaHandler vencerReservaHandlerTest;
+	VencerDeudaHandler vencerReservaHandlerTest;
 
 	@Mock
-	VencerReservaCommand vencerReservaCommandTest;
+	VencerDeudaCommand vencerReservaCommandTest;
 
 	@Mock
 	IDeudaRepository _deudaRepositoryTest;
@@ -39,7 +41,7 @@ class VencerReservaHandlerTest {
 	@BeforeEach
 	void init() throws Exception {
 		vencerReservaHandlerTest =
-			new VencerReservaHandler(_deudaRepositoryTest, _unitOfWorkTest);
+			new VencerDeudaHandler(_deudaRepositoryTest, _unitOfWorkTest);
 
 		deudaIDTest = UUID.randomUUID();
 		reservaIdTest = UUID.randomUUID();

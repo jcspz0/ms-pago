@@ -1,7 +1,7 @@
 package com.diplo.mspago.repository;
 
 import com.diplo.mspago.model.deuda.Deuda;
-import com.diplo.sharekernel.core.IRepository;
+import com.diplo.sharedkernel.core.IRepository;
 import java.util.UUID;
 import java.util.concurrent.Future;
 

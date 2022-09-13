@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 )
 public class MsPagoWebapiApplication extends SpringBootServletInitializer {
 
-	//add
 	public static void main(String[] args) {
 		SpringApplication.run(MsPagoWebapiApplication.class, args);
 	}
