@@ -43,8 +43,6 @@ public class ConfirmarPagoHandler
 				return null;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			System.out.println(
 				"RealizarPagoHandler-> no se encontro la deuda relacionada al pago"
 			);

@@ -1,17 +1,13 @@
 package com.diplo.application.mspago.listenerevent;
 
 import com.diplo.sharedkernel.core.Constant;
-import com.diplo.sharedkernel.event.DomainEvent;
 import com.diplo.sharedkernel.event.DomainMessage;
 import com.diplo.sharedkernel.event.IListenerTracker;
-import com.diplo.sharedkernel.event.IntegrationEvent;
 import com.diplo.sharedkernel.event.IntegrationMessage;
 import com.diplo.sharedkernel.event.MessageEvent;
-import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component

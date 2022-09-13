@@ -50,7 +50,7 @@ public class ConsumerIntegrationCheckinCreado
 			);
 			_mediator.Send(confirmarPagoCommand);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 }

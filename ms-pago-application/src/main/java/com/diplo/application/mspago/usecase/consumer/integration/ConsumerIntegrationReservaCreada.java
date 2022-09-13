@@ -53,7 +53,7 @@ public class ConsumerIntegrationReservaCreada
 		try {
 			_mediator.Send(crearDeudaCommand);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	/*@EventListener

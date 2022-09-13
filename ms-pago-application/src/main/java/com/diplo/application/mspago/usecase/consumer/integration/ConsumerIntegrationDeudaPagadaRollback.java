@@ -54,7 +54,7 @@ public class ConsumerIntegrationDeudaPagadaRollback
 			);
 			_mediator.Send(deudaPagadaRollbackCommand);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 }

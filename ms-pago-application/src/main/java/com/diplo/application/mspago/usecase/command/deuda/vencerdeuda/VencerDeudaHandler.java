@@ -43,8 +43,6 @@ public class VencerDeudaHandler
 				return null;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			System.out.println(
 				"RealizarPagoHandler-> no se encontró la deuda relacionada al pago"
 			);

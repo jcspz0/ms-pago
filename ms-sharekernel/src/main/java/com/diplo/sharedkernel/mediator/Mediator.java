@@ -45,7 +45,7 @@ public class Mediator implements IMediator {
 			return (I) result;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 			throw new Exception(
 				"Falla al tratar de procesar el request en el mediador"
 			);

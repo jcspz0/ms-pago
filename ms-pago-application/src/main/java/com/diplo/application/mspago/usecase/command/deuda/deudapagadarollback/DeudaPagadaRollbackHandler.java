@@ -44,8 +44,6 @@ public class DeudaPagadaRollbackHandler
 				return null;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			System.out.println(
 				"DeudaPagadaRollbackHandler-> no se encontro la deuda de la reserva"
 			);
