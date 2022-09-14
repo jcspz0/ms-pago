@@ -28,6 +28,10 @@ services:
       - ENV_MYSQL_USER=jcspz0 
       - ENV_MYSQL_PASS=juancarlos 
       - ENV_APP_PORT=8081 
+      - ENV_AMQP_HOST=159.223.144.204 
+      - ENV_AMQP_PORT=5672 
+      - ENV_AMQP_USER=guest 
+      - ENV_AMQP_PASS=guest 
     depends_on:
       db:
         condition: service_healthy
