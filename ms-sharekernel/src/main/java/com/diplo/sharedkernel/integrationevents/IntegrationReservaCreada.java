@@ -1,24 +1,43 @@
 package com.diplo.sharedkernel.integrationevents;
 
 import com.diplo.sharedkernel.event.IntegrationEvent;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 //public class IntegrationReservaCreada extends IntegrationEvent  {
-public class IntegrationReservaCreada implements Serializable {
+public class IntegrationReservaCreada {
 
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	private final String NroReserva;
-	private final String ReservaId;
-	private final String VueloId;
-	private final String pasajero;
-	private final String hora;
-	private final int cantidadPasajeros;
-	private final double total;
+
+	@JsonProperty("nroReserva")
+	private String nroReserva;
+
+	@JsonProperty("reservaId")
+	private String reservaId;
+
+	@JsonProperty("vueloId")
+	private String vueloId;
+
+	@JsonProperty("pasajero")
+	private String pasajero;
+
+	@JsonProperty("hora")
+	private String hora;
+
+	@JsonProperty("cantidadPasajeros")
+	private int cantidadPasajeros;
+
+	@JsonProperty("total")
+	private double total;
+
+	public IntegrationReservaCreada() {
+		super();
+	}
 
 	public IntegrationReservaCreada(
 		String reservaId,
@@ -30,9 +49,9 @@ public class IntegrationReservaCreada implements Serializable {
 		double total
 	) {
 		//super("ReservaCreada",LocalDateTime.now().toString());
-		NroReserva = nroReserva;
-		ReservaId = reservaId;
-		VueloId = vueloId;
+		this.nroReserva = nroReserva;
+		this.reservaId = reservaId;
+		this.vueloId = vueloId;
 		this.pasajero = pasajeroId;
 		this.hora = hora;
 		this.cantidadPasajeros = cantidadPasajeros;
@@ -40,15 +59,15 @@ public class IntegrationReservaCreada implements Serializable {
 	}
 
 	public String getNroReserva() {
-		return NroReserva;
+		return nroReserva;
 	}
 
 	public String getReservaId() {
-		return ReservaId;
+		return reservaId;
 	}
 
 	public String getVueloId() {
-		return VueloId;
+		return vueloId;
 	}
 
 	public String getPasajero() {
