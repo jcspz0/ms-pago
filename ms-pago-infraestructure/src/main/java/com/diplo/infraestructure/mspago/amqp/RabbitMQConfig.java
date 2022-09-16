@@ -95,7 +95,8 @@ public class RabbitMQConfig {
 		final RabbitTemplate rabbitTemplate = new RabbitTemplate(
 			connectionFactory
 		);
-		rabbitTemplate.setMessageConverter(jsonMessageConverter());
+		//rabbitTemplate.setMessageConverter(jsonMessageConverter());
+		rabbitTemplate.setMessageConverter(converter());
 		return rabbitTemplate;
 	}
 }
