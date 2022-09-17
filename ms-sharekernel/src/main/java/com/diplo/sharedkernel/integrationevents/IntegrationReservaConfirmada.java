@@ -16,6 +16,7 @@ public class IntegrationReservaConfirmada {
 	private String hora;
 	private String vueloId;
 	private String destino;
+	private String origen;
 	private int nroDoc;
 	private int tipoDoc;
 	private String nombreCompletoPasajero;
@@ -32,6 +33,7 @@ public class IntegrationReservaConfirmada {
 		int nroDoc,
 		String nombreCompletoPasajero,
 		String hora,
+		String origen,
 		String destino,
 		int cantidadPasajeros,
 		String pagoId
@@ -41,6 +43,7 @@ public class IntegrationReservaConfirmada {
 		this.cantidadPasajeros = cantidadPasajeros;
 		this.hora = hora;
 		this.vueloId = vueloId;
+		this.origen = origen;
 		this.destino = destino;
 		this.nroDoc = nroDoc;
 		this.tipoDoc = tipoDoc;
@@ -50,6 +53,10 @@ public class IntegrationReservaConfirmada {
 
 	public String getReservaId() {
 		return reservaId;
+	}
+
+	public String getOrigen() {
+		return origen;
 	}
 
 	public int getCantidadPasajeros() {

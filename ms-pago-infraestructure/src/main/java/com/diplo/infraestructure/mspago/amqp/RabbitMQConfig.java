@@ -26,12 +26,12 @@ public class RabbitMQConfig {
 
 	@Bean
 	Queue deudaVencidaToReserva() {
-		return new Queue("pago.deudavencida.reserva.vencerreserva", false);
+		return new Queue("pago.deudavencida.reserva.vencerreserva", true);
 	}
 
 	@Bean
 	Queue deudaPagadaToReserva() {
-		return new Queue("pago.deudapagada.reserva.confirmarreserva", false);
+		return new Queue("pago.deudapagada.reserva.confirmarreserva", true);
 	}
 
 	@Bean
