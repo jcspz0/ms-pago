@@ -1,3 +1,39 @@
+####
+FROM maven:3-openjdk-11-slim as builder
+WORKDIR /build
+
+COPY ./ms-sharekernel/pom.xml ./ms-sharekernel/pom.xml
+COPY ./ms-pago-domain/pom.xml ./ms-pago-domain/pom.xml
+COPY ./ms-pago-application/pom.xml ./ms-pago-application/pom.xml
+COPY ./ms-pago-infraestructure/pom.xml ./ms-pago-infraestructure/pom.xml
+COPY ./ms-pago-webapi/pom.xml ./ms-pago-webapi/pom.xml
+COPY ./pom.xml ./pom.xml
+
+RUN mvn -q -ntp -B -pl ms-sharekernel -am dependency:go-offline
+COPY ms-sharekernel ms-sharekernel
+RUN mvn -q -B -pl ms-sharekernel install
+
+RUN mvn -q -ntp -B -pl ms-pago-domain -am dependency:go-offline
+COPY ms-pago-domain ms-pago-domain
+RUN mvn -q -B -pl ms-pago-domain install
+
+RUN mvn -q -ntp -B -pl ms-pago-application -am dependency:go-offline
+COPY ms-pago-application ms-pago-application
+RUN mvn -q -B -pl ms-pago-application install
+
+RUN mvn -q -ntp -B -pl ms-pago-infraestructure -am dependency:go-offline
+COPY ms-pago-infraestructure ms-pago-infraestructure
+RUN mvn -q -B -pl ms-pago-infraestructure install
+
+RUN mvn -q -ntp -B -pl ms-pago-webapi -am dependency:go-offline
+COPY ms-pago-webapi ms-pago-webapi
+RUN mvn -q -ntp -B -pl ms-sharekernel,ms-pago-domain,ms-pago-application,ms-pago-infraestructure,ms-pago-webapi package
+
+RUN mkdir -p /jar-layers
+WORKDIR /jar-layers
+RUN java -Djarmode=layertools -jar /build/ms-pago-webapi/target/ms-pago-webapi-0.0.1-exec.jar extract
+
+####
 FROM openjdk:18-alpine
 
 WORKDIR /app
@@ -9,10 +45,6 @@ COPY ./ms-pago-infraestructure ./ms-pago-infraestructure
 COPY ./ms-pago-webapi ./ms-pago-webapi
 COPY ./report-aggregate-module ./report-aggregate-module
 COPY ./pom.xml ./pom.xml
-
-RUN wget https://mirrors.estointernet.in/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz \
-&& tar -xvf apache-maven-3.6.3-bin.tar.gz && \
-mv apache-maven-3.6.3 /opt/
 
 ARG MYSQL_HOST=host.docker.internal
 ARG MYSQL_PORT=3306
@@ -40,10 +72,11 @@ ENV ENV_AMQP_PORT=${AMQP_PORT}
 ENV ENV_AMQP_USER=${AMQP_USER}
 ENV ENV_AMQP_PASS=${AMQP_PASS}
 
-RUN /opt/apache-maven-3.6.3/bin/mvn install
+COPY --from=builder /jar-layers/dependencies/ ./
+COPY --from=builder /jar-layers/spring-boot-loader/ ./
+COPY --from=builder /jar-layers/snapshot-dependencies/ ./
+COPY --from=builder /jar-layers/application/ ./
 
-RUN cp /app/ms-pago-webapi/target/ms-pago-webapi-0.0.1-exec.jar /app/ms-pago-webapi-0.0.1-exec.jar
-
-CMD "java" "-jar" "ms-pago-webapi-0.0.1-exec.jar"
+ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
 
 
