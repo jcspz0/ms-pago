@@ -53,8 +53,8 @@ jobs:
         run: ssh staging 'cd /diplo/ms-pago/ && docker-compose down'
 
       - name: Do deploy
-        run: ssh staging 'cd /diplo/script/ && sh deploy.sh'
+        run: ssh staging 'cd /diplo/ && sh update-pago.sh'
         
       - name: Start the server
         if: ${{ always() }}
-        run: ssh staging 'cd /diplo/ms-pago/ && docker-compose up -d'
+        run: ssh staging 'cd /diplo/ms-pago/ && docker-compose up --build -d'
