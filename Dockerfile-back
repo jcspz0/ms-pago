@@ -7,6 +7,7 @@ COPY ./ms-pago-domain/pom.xml ./ms-pago-domain/pom.xml
 COPY ./ms-pago-application/pom.xml ./ms-pago-application/pom.xml
 COPY ./ms-pago-infraestructure/pom.xml ./ms-pago-infraestructure/pom.xml
 COPY ./ms-pago-webapi/pom.xml ./ms-pago-webapi/pom.xml
+COPY ./report-aggregate-module/pom.xml ./report-aggregate-module/pom.xml
 COPY ./pom.xml ./pom.xml
 
 RUN mvn -q -ntp -B -pl ms-sharekernel -am dependency:go-offline
@@ -25,9 +26,13 @@ RUN mvn -q -ntp -B -pl ms-pago-infraestructure -am dependency:go-offline
 COPY ms-pago-infraestructure ms-pago-infraestructure
 RUN mvn -q -B -pl ms-pago-infraestructure install
 
+RUN mvn -q -ntp -B -pl report-aggregate-module -am dependency:go-offline
+COPY report-aggregate-module report-aggregate-module
+RUN mvn -q -B -pl report-aggregate-module install
+
 RUN mvn -q -ntp -B -pl ms-pago-webapi -am dependency:go-offline
 COPY ms-pago-webapi ms-pago-webapi
-RUN mvn -q -ntp -B -pl ms-sharekernel,ms-pago-domain,ms-pago-application,ms-pago-infraestructure,ms-pago-webapi package
+RUN mvn -q -ntp -B -pl ms-sharekernel,ms-pago-domain,ms-pago-application,ms-pago-infraestructure,report-aggregate-module,ms-pago-webapi package
 
 RUN mkdir -p /jar-layers
 WORKDIR /jar-layers
