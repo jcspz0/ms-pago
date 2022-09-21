@@ -32,6 +32,10 @@ RUN mvn -q -B -pl report-aggregate-module install
 
 RUN mvn -q -ntp -B -pl ms-pago-webapi -am dependency:go-offline
 COPY ms-pago-webapi ms-pago-webapi
+RUN mvn -q -B -pl ms-pago-webapi install
+
+RUN mvn -q -ntp -B -pl ms-pago-webapi -am dependency:go-offline
+COPY ms-pago-webapi ms-pago-webapi
 RUN mvn -q -ntp -B -pl ms-sharekernel,ms-pago-domain,ms-pago-application,ms-pago-infraestructure,report-aggregate-module,ms-pago-webapi package
 
 RUN mkdir -p /jar-layers
