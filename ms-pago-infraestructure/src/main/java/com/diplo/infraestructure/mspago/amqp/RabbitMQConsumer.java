@@ -2,6 +2,7 @@ package com.diplo.infraestructure.mspago.amqp;
 
 import com.diplo.sharedkernel.amqp.AmqpMessage;
 import com.diplo.sharedkernel.amqp.IAmqpConsumer;
+import com.diplo.sharedkernel.amqp.MasstransitEvent;
 import com.diplo.sharedkernel.event.IListenerIntegrationConsumer;
 import com.diplo.sharedkernel.event.IListenerIntegrationTracker;
 import com.diplo.sharedkernel.event.IntegrationEvent;
@@ -11,6 +12,7 @@ import com.diplo.sharedkernel.integrationevents.IntegrationReservaCreada;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Map;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -49,11 +51,22 @@ public class RabbitMQConsumer {
 		}
 	}
 
-	@RabbitListener(queues = "checkin.chekincreado.pago.confirmarpago")
+	//@RabbitListener(queues = "checkin.chekincreado.pago.confirmarpago")
+	@RabbitListener(queues = "reservaconfirmada-creado-aeropuertojsa")
 	public void checkinCreado(String event) {
-		IntegrationCheckinCreado message;
 		try {
-			message = mapper.readValue(event, IntegrationCheckinCreado.class);
+			MasstransitEvent masstransitEvent = mapper.readValue(
+				event,
+				MasstransitEvent.class
+			);
+			System.out.println(
+				"Recieved Message From RabbitMQ: " +
+				masstransitEvent.getMessage()
+			);
+			Map<String, Object> messageMap = masstransitEvent.getMessage();
+			IntegrationCheckinCreado message = new IntegrationCheckinCreado(
+				(String) messageMap.get("id")
+			);
 			System.out.println("Recieved Message From RabbitMQ: " + event);
 			System.out.println(
 				"Recieved Message para confimarPago con la ReservaId " +

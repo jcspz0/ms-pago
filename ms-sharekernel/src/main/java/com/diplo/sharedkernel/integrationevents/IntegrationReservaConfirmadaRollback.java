@@ -34,4 +34,12 @@ public class IntegrationReservaConfirmadaRollback {
 	public String getPagoId() {
 		return pagoId;
 	}
+
+	public void setReservaId(String reservaId) {
+		this.reservaId = reservaId;
+	}
+
+	public void setPagoId(String pagoId) {
+		this.pagoId = pagoId;
+	}
 }
