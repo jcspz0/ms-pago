@@ -26,13 +26,13 @@ RUN mvn -q -ntp -B -pl ms-pago-infraestructure -am dependency:go-offline
 COPY ms-pago-infraestructure ms-pago-infraestructure
 RUN mvn -q -B -pl ms-pago-infraestructure install
 
-RUN mvn -q -ntp -B -pl report-aggregate-module -am dependency:go-offline
-COPY report-aggregate-module report-aggregate-module
-RUN mvn -q -B -pl report-aggregate-module install
-
 RUN mvn -q -ntp -B -pl ms-pago-webapi -am dependency:go-offline
 COPY ms-pago-webapi ms-pago-webapi
 RUN mvn -q -B -pl ms-pago-webapi install
+
+RUN mvn -q -ntp -B -pl report-aggregate-module -am dependency:go-offline
+COPY report-aggregate-module report-aggregate-module
+RUN mvn -q -B -pl report-aggregate-module install
 
 RUN mvn -q -ntp -B -pl ms-pago-webapi -am dependency:go-offline
 COPY ms-pago-webapi ms-pago-webapi
