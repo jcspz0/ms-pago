@@ -12,11 +12,15 @@ public class IntegrationCheckinCreado {
 	 *
 	 */
 
-	private final String reservaId;
+	private String reservaId;
 
 	public IntegrationCheckinCreado(String reservaId) {
 		//super("ReservaCreada",LocalDateTime.now().toString());
 		this.reservaId = reservaId;
+	}
+
+	public IntegrationCheckinCreado() {
+		super();
 	}
 
 	public String getReservaId() {
