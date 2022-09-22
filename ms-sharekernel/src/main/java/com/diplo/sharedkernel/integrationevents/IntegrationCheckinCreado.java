@@ -6,17 +6,21 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 //public class IntegrationReservaCreada extends IntegrationEvent  {
-public class IntegrationCheckinCreado implements Serializable {
+public class IntegrationCheckinCreado {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
-	private final String reservaId;
+
+	private String reservaId;
 
 	public IntegrationCheckinCreado(String reservaId) {
 		//super("ReservaCreada",LocalDateTime.now().toString());
 		this.reservaId = reservaId;
+	}
+
+	public IntegrationCheckinCreado() {
+		super();
 	}
 
 	public String getReservaId() {

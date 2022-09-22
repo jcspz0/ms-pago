@@ -6,11 +6,14 @@ import java.util.UUID;
 
 public class IntegrationDeudaCreada {
 
-	private static final long serialVersionUID = 1L;
-	private final UUID DeudaId;
-	private final String Estado;
-	private final UUID ReservaId;
-	private final double Total;
+	private UUID deudaId;
+	private String estado;
+	private UUID reservaId;
+	private double Total;
+
+	public IntegrationDeudaCreada() {
+		super();
+	}
 
 	public IntegrationDeudaCreada(
 		UUID deudaId,
@@ -19,26 +22,22 @@ public class IntegrationDeudaCreada {
 		String estado
 	) {
 		//super("DeudaCreada",LocalDateTime.now().toString());
-		DeudaId = deudaId;
-		ReservaId = reservaId;
+		this.deudaId = deudaId;
+		this.reservaId = reservaId;
 		Total = total;
-		Estado = estado;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+		this.estado = estado;
 	}
 
 	public UUID getDeudaId() {
-		return DeudaId;
+		return deudaId;
 	}
 
 	public String getEstado() {
-		return Estado;
+		return estado;
 	}
 
 	public UUID getReservaId() {
-		return ReservaId;
+		return reservaId;
 	}
 
 	public double getTotal() {

@@ -6,14 +6,17 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 //public class IntegrationReservaCreada extends IntegrationEvent  {
-public class IntegrationDeudaPagadaRollback implements Serializable {
+public class IntegrationDeudaPagadaRollback {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
-	private final String reservaId;
-	private final String pagoId;
+	private String reservaId;
+	private String pagoId;
+
+	public IntegrationDeudaPagadaRollback() {
+		super();
+	}
 
 	public IntegrationDeudaPagadaRollback(String reservaId, String pagoId) {
 		//super("ReservaCreada",LocalDateTime.now().toString());

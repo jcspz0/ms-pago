@@ -6,21 +6,25 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 //public class IntegrationReservaCreada extends IntegrationEvent  {
-public class IntegrationReservaConfirmada implements Serializable {
+public class IntegrationReservaConfirmada {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
-	private final String reservaId;
-	private final int cantidadPasajeros;
-	private final String hora;
-	private final String vueloId;
-	private final String destino;
-	private final int nroDoc;
-	private final int tipoDoc;
-	private final String nombreCompletoPasajero;
-	private final String pagoId;
+	private String reservaId;
+	private int cantidadPasajeros;
+	private String hora;
+	private String vueloId;
+	private String destino;
+	private String origen;
+	private int nroDoc;
+	private int tipoDoc;
+	private String nombreCompletoPasajero;
+	private String pagoId;
+
+	public IntegrationReservaConfirmada() {
+		super();
+	}
 
 	public IntegrationReservaConfirmada(
 		String reservaId,
@@ -29,6 +33,7 @@ public class IntegrationReservaConfirmada implements Serializable {
 		int nroDoc,
 		String nombreCompletoPasajero,
 		String hora,
+		String origen,
 		String destino,
 		int cantidadPasajeros,
 		String pagoId
@@ -38,6 +43,7 @@ public class IntegrationReservaConfirmada implements Serializable {
 		this.cantidadPasajeros = cantidadPasajeros;
 		this.hora = hora;
 		this.vueloId = vueloId;
+		this.origen = origen;
 		this.destino = destino;
 		this.nroDoc = nroDoc;
 		this.tipoDoc = tipoDoc;
@@ -47,6 +53,10 @@ public class IntegrationReservaConfirmada implements Serializable {
 
 	public String getReservaId() {
 		return reservaId;
+	}
+
+	public String getOrigen() {
+		return origen;
 	}
 
 	public int getCantidadPasajeros() {

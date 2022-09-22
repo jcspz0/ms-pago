@@ -6,14 +6,17 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 //public class IntegrationReservaCreada extends IntegrationEvent  {
-public class IntegrationReservaConfirmadaRollback implements Serializable {
+public class IntegrationReservaConfirmadaRollback {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
-	private final String reservaId;
-	private final String pagoId;
+	private String reservaId;
+	private String pagoId;
+
+	public IntegrationReservaConfirmadaRollback() {
+		super();
+	}
 
 	public IntegrationReservaConfirmadaRollback(
 		String reservaId,
@@ -30,5 +33,13 @@ public class IntegrationReservaConfirmadaRollback implements Serializable {
 
 	public String getPagoId() {
 		return pagoId;
+	}
+
+	public void setReservaId(String reservaId) {
+		this.reservaId = reservaId;
+	}
+
+	public void setPagoId(String pagoId) {
+		this.pagoId = pagoId;
 	}
 }

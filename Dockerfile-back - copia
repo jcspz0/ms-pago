@@ -1,0 +1,49 @@
+FROM openjdk:18-alpine
+
+WORKDIR /app
+
+COPY ./ms-sharekernel ./ms-sharekernel
+COPY ./ms-pago-domain ./ms-pago-domain
+COPY ./ms-pago-application ./ms-pago-application
+COPY ./ms-pago-infraestructure ./ms-pago-infraestructure
+COPY ./ms-pago-webapi ./ms-pago-webapi
+COPY ./report-aggregate-module ./report-aggregate-module
+COPY ./pom.xml ./pom.xml
+
+RUN wget https://mirrors.estointernet.in/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz \
+&& tar -xvf apache-maven-3.6.3-bin.tar.gz && \
+mv apache-maven-3.6.3 /opt/
+
+ARG MYSQL_HOST=host.docker.internal
+ARG MYSQL_PORT=3306
+ARG MYSQL_DB=jcdb
+ARG MYSQL_USER=jcspz0
+ARG MYSQL_PASS=juancarlos
+ARG APP_PORT=8081
+ARG ARG_SPRING_PROFILES_ACTIVE=docker
+
+ARG AMQP_HOST=159.223.144.204
+ARG AMQP_PORT=5672
+ARG AMQP_USER=guest
+ARG AMQP_PASS=guest
+
+ENV ENV_MYSQL_HOST=${MYSQL_HOST}
+ENV ENV_MYSQL_PORT=${MYSQL_PORT}
+ENV ENV_MYSQL_DB=${MYSQL_DB}
+ENV ENV_MYSQL_USER=${MYSQL_USER}
+ENV ENV_MYSQL_PASS=${MYSQL_PASS}
+ENV ENV_APP_PORT=${APP_PORT}
+ENV SPRING_PROFILES_ACTIVE=${ARG_SPRING_PROFILES_ACTIVE}
+
+ENV ENV_AMQP_HOST=${AMQP_HOST}
+ENV ENV_AMQP_PORT=${AMQP_PORT}
+ENV ENV_AMQP_USER=${AMQP_USER}
+ENV ENV_AMQP_PASS=${AMQP_PASS}
+
+RUN /opt/apache-maven-3.6.3/bin/mvn install
+
+RUN cp /app/ms-pago-webapi/target/ms-pago-webapi-0.0.1-exec.jar /app/ms-pago-webapi-0.0.1-exec.jar
+
+CMD "java" "-jar" "ms-pago-webapi-0.0.1-exec.jar"
+
+
