@@ -99,7 +99,7 @@ public class pagar_deuda {
 	}
 
 	private void obtenerDeuda() throws Exception {
-		driver.get("http://localhost:4000/deuda");
+		driver.get("http://localhost:4200/modulos/deuda/deuda");
 		WebElement inputBuscarReservaId = driver.findElement(
 			By.id("inputReservaId")
 		);
